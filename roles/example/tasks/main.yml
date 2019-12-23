@@ -1,0 +1,7 @@
+- block:
+
+  - name: print message
+    debug:
+      msg: "{{ message }}"
+
+# vim: set et sw=2  ts=2:
