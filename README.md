@@ -40,6 +40,15 @@ The sub-directries are separated intto `conf` and `op` .
 
 ```
 $ ansible-playbook playbook/conf/example.yml -c local
+$ ansible-playbook playbook/op/example.yml -c local
+```
+
+## How to use this project
+
+Pull this repository and modify it.
+
+```
+$ git clone https://github.com/dobachi/ansible-project-template.git ansible-your-project
 ```
 
 ## License
