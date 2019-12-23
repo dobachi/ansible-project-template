@@ -45,7 +45,8 @@ $ ansible-playbook playbook/op/example.yml -c local
 
 ## How to use this project
 
-Pull this repository and modify it.
+Clone this this repository on GitHub.
+Pull to local and modify it.
 
 ```
 $ git clone https://github.com/dobachi/ansible-project-template.git ansible-your-project
