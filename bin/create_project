@@ -3,19 +3,38 @@
 import os
 import shutil
 import pathlib
+import argparse
 
-print("=== Creating Ansible Project ===")
 
-print("# Project name: ")
-project_name = input()
+parser = argparse.ArgumentParser(description='Creating Ansible Project')
+parser.add_argument('-n', '--project-name', dest='project_name', default=None,
+                    help='The name of your project')
+parser.add_argument('-p', '--project-path', dest='project_path', default=None,
+                    type=pathlib.Path, help='The path of your project')
+parser.add_argument('-t', '--template-type', dest='template_type', default=None,
+                    help='The type of template')
 
-print("# Parent directory: ")
-parent_dir_path = os.path.expanduser(input())
+args = parser.parse_args()
 
-print("# Type of template: ")
-template_type = input()
+
+project_name = args.project_name
+project_path = args.project_path
+template_type = args.template_type
+
+if project_name == None:
+    print("# Project name: ")
+    project_name = input()
+
+if project_path == None:
+    print("# Project directory: ")
+    project_path = pathlib.Path(os.path.expanduser(input())).resolve()
+
+if template_type == None:
+    print("# Type of template: ")
+    template_type = input()
 
 print("Creating the parent directory...")
+parent_dir_path = project_path.parent
 print(parent_dir_path)
 os.makedirs(parent_dir_path, exist_ok=True)
 
@@ -24,6 +43,6 @@ root_path = pathlib.Path(__file__).parent.parent.resolve()
 templates_dir_name = "templates"
 templates_path = root_path.joinpath(root_path, templates_dir_name)
 src_path = os.path.join(templates_path, template_type)
-dest_path = pathlib.Path(os.path.join(parent_dir_path, project_name)).resolve()
+dest_path = pathlib.Path(project_path).resolve()
 print("Copy from {} to {}".format(src_path, dest_path))
 shutil.copytree(src_path, dest_path)
