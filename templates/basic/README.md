@@ -43,20 +43,6 @@ $ ansible-playbook playbook/conf/example.yml -c local
 $ ansible-playbook playbook/op/example.yml -c local
 ```
 
-## How to use this project
-
-Clone this this repository on GitHub.
-Pull to local and modify it.
-
-Or, you can download this repository from [Release page on GitHub] .
-
-```
-$ git clone https://github.com/dobachi/ansible-project-template.git ansible-your-project
-```
-
-
-[Release page on GitHub]: https://github.com/dobachi/ansible-project-template/releases
-
 ## License
 
 GNU General Public License v3.0 or later
