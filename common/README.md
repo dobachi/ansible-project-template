@@ -43,8 +43,8 @@ The sub-directries are separated intto `conf` and `op` .
 ## How to execute
 
 ```
-$ ansible-playbook playbook/conf/example.yml -c local
-$ ansible-playbook playbook/op/example.yml -c local
+$ ansible-playbook playbook/conf/example.yml -c local -b -K
+$ ansible-playbook playbook/op/example.yml -c local -b -K
 ```
 
 ## License
