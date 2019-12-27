@@ -1,5 +1,9 @@
 # {{project_name}}
 
+## Executable environment
+
+{{exec_env}}
+
 ## About contents
 
 ### ansible.cfg

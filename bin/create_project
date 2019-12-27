@@ -13,6 +13,8 @@ parser.add_argument('-p', '--project-path', dest='project_path', default=None,
                     type=pathlib.Path, help='The path of your project')
 parser.add_argument('-t', '--template-type', dest='template_type', default=None,
                     help='The type of template')
+parser.add_argument('-e', '--executable-env', dest='exec_env', default=None,
+                    help='The executable environments. (e.g. CentOS7, Ubuntu18)')
 
 args = parser.parse_args()
 
@@ -20,6 +22,7 @@ args = parser.parse_args()
 project_name = args.project_name
 project_path = args.project_path
 template_type = args.template_type
+exec_env = args.exec_env
 
 if project_name == None:
     print("# Project name: ")
@@ -32,6 +35,10 @@ if project_path == None:
 if template_type == None:
     print("# Type of template: ")
     template_type = input()
+
+if exec_env == None:
+    print("# Executable environments: ")
+    exec_env = input()
 
 print("Creating the parent directory...")
 parent_dir_path = project_path.parent
@@ -57,7 +64,7 @@ env = Environment(
 
 readme_name = "README.md"
 readme_template = env.get_template(readme_name)
-readme_content = readme_template.render(project_name = project_name)
+readme_content = readme_template.render(project_name = project_name, exec_env = exec_env)
 
 readme_path = dest_path.joinpath(readme_name)
 with open(readme_path, mode="w") as f:
