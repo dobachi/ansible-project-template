@@ -4,7 +4,7 @@ import os
 import shutil
 import pathlib
 import argparse
-
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 parser = argparse.ArgumentParser(description='Creating Ansible Project')
 parser.add_argument('-n', '--project-name', dest='project_name', default=None,
@@ -40,9 +40,25 @@ os.makedirs(parent_dir_path, exist_ok=True)
 
 print("Copying template to the directory...")
 root_path = pathlib.Path(__file__).parent.parent.resolve()
-templates_dir_name = "templates"
-templates_path = root_path.joinpath(root_path, templates_dir_name)
+templates_dir_name = "project_templates"
+templates_path = root_path.joinpath(templates_dir_name)
 src_path = os.path.join(templates_path, template_type)
 dest_path = pathlib.Path(project_path).resolve()
 print("Copy from {} to {}".format(src_path, dest_path))
 shutil.copytree(src_path, dest_path)
+
+print("Creating README.md...")
+common_dir_name = "common"
+common_path = root_path.joinpath(common_dir_name)
+env = Environment(
+    loader=FileSystemLoader([common_path]),
+    autoescape=select_autoescape(['md'])
+)
+
+readme_name = "README.md"
+readme_template = env.get_template(readme_name)
+readme_content = readme_template.render(project_name = project_name)
+
+readme_path = dest_path.joinpath(readme_name)
+with open(readme_path, mode="w") as f:
+    f.write(readme_content)
