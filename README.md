@@ -8,13 +8,14 @@ Clone this repository.
 $ git clone https://github.com/dobachi/ansible-project-template.git
 ```
 
-This project uses `pipenv` to configure environment and requirements.
-Please setup `pipenv` before using this project.
+This project uses `pip` and `venv` to configure environment and requirements.
 
-Execute pipenv command in this repository.
+Execute venv and pip in this repository.
 ```
 $ cd ansible-project-template
-$ pipenv install
+$ python -m venv venv
+$ . ./venv/bin/activate
+$ pip intall -r requirements.txt
 ```
 
 Execute create_project
