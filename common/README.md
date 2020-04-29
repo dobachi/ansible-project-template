@@ -24,6 +24,7 @@ This inventory includes the top leve group and sample child group.
 ### group_vars
 
 Most of variables used in roles are changed via hosts_vars.
+This template includes `group_vars/production/99_private` file which is included in `.gitignore` to store private variables.
 
 ### roles
 
